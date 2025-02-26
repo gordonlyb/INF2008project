@@ -17,7 +17,7 @@ def town_encoding(df):
 
         town_df = pd.DataFrame(town_encoded, columns=town_names, index=df.index)
         
-        df = df.drop(columns=['town'])  # Drop original column
+        #df = df.drop(columns=['town'])  # Drop original column
         df = pd.concat([df, town_df], axis=1)  # Merge encoded columns
     return df
 
@@ -30,7 +30,7 @@ def flat_encoding(df):
 
         flat_df = pd.DataFrame(flat_encoded, columns=flat_names, index=df.index)
         
-        df = df.drop(columns=['flat_type'])
+        #df = df.drop(columns=['flat_type'])
         df = pd.concat([df, flat_df], axis=1)
     return df
 
@@ -42,7 +42,7 @@ def flat_model_encoding(df):
         model_names = [col.replace("flat_model_", "") for col in encoder.get_feature_names_out(['flat_model'])]
         model_df = pd.DataFrame(model_encoded, columns=model_names, index=df.index)
         
-        df = df.drop(columns=['flat_model'])
+        #df = df.drop(columns=['flat_model'])
         df = pd.concat([df, model_df], axis=1)
     return df
 
@@ -82,7 +82,7 @@ def load_and_process(file_path, output_path):
     
 def processedCSV():
     input_file = "Dataset/Resaleflatprices.csv"
-    output_file = "Dataset/Updated_Resaleflatprices.csv"
+    output_file = "Dataset/processed_Resaleflatprices.csv"
 
     print("Processing dataset...")
     processed_df = load_and_process(input_file, output_file)
