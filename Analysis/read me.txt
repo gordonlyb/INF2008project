@@ -1,0 +1,2 @@
+This folder is to be used for visualization purposes using jupiter (similar to lab1 and 2)
+for use in report or PPT
