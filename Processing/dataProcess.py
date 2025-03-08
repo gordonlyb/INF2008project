@@ -1,5 +1,6 @@
 import pandas as pd
 from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import MinMaxScaler
 
 def drop_columns(df):
     columns_to_drop = ["lease_commence_date", "street_name", "block"]
@@ -46,9 +47,23 @@ def flat_model_encoding(df):
         df = pd.concat([df, model_df], axis=1)
     return df
 
+def convert_lease(lease_str):
+    parts = lease_str.split()
+    if len(parts) == 2:  # e.g., "50 years"
+        years = int(parts[0])
+        months = 0
+    elif len(parts) >= 3:  # e.g., "74 years 08 months"
+        years = int(parts[0])
+        months = int(parts[2])
+    else:
+        # Handle unexpected format, e.g., return 0 or raise an error
+        years = 0
+        months = 0
+    return years + months / 12
+
 def lease_encoding(df):
     if "remaining_lease" in df.columns:
-        df["remaining_lease"] = df["remaining_lease"].str.extract(r'(\d{2})').astype(float)
+        df['remaining_lease'] = df['remaining_lease'].apply(convert_lease)
     return df
 
 def storey_encoding(df):
@@ -70,6 +85,10 @@ def load_and_process(file_path, output_path):
         df = storey_encoding(df)
         df = flat_model_encoding(df)
         df = lease_encoding(df)
+
+        scaler = MinMaxScaler()
+        numerical_cols = ['floor_area_sqm', 'Average_storey_range', 'remaining_lease']
+        df[numerical_cols] = scaler.fit_transform(df[numerical_cols])
 
         df.to_csv(output_path, index=False)
         print(f"Processed data saved to: {output_path}")
