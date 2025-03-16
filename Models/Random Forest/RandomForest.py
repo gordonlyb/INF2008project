@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import os
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
@@ -26,6 +27,8 @@ def train_random_forest_model(data_path):
     y_test (Series): Test target values
     metrics (dict): Dictionary of performance metrics
     """
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
     # Load the processed data
     print("Loading data from:", data_path)
     df = pd.read_csv(data_path)
@@ -37,13 +40,14 @@ def train_random_forest_model(data_path):
     # Split the data into training and testing sets (80% train, 20% test)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     
-    # Create the random forest model
-    # These hyperparameters can be tuned for better performance
+    # Create the random forest model with optimized parameters
     model = RandomForestRegressor(
-        n_estimators=100,     # Number of trees in the forest
-        max_depth=15,         # Maximum depth of the trees
-        min_samples_split=5,  # Minimum samples required to split
-        n_jobs=-1,            # Use all available cores
+        n_estimators=50,        # Reduced number of trees for faster training
+        max_depth=10,           # Reduced depth to prevent overfitting and improve speed
+        min_samples_split=10,   # Increased to simplify trees
+        min_samples_leaf=4,     # Added to further reduce complexity
+        max_features='sqrt',    # Use square root of features - better for high dimensionality
+        n_jobs=1,               # Limit cores to prevent memory issues
         random_state=42
     )
     
@@ -69,16 +73,34 @@ def train_random_forest_model(data_path):
     p = X_test.shape[1]  # Number of predictors
     adjusted_r2 = 1 - (1 - r2) * (n - 1) / (n - p - 1)
     
-    # Cross-validation
-    # We'll use a smaller number of trees for cross-validation to speed it up
-    cv_model = RandomForestRegressor(n_estimators=50, max_depth=15, min_samples_split=5, random_state=42)
+    # Take a sample for cross-validation if dataset is very large
+    sample_size = min(100000, len(X))  # Update to desired sample size
+    if len(X) > 100000:
+        print(f"Using {sample_size} samples for cross-validation (out of {len(X)} total rows)")
+        X_sample = X.sample(n=sample_size, random_state=42)
+        y_sample = y[X_sample.index]
+    else:
+        X_sample = X
+        y_sample = y
     
+    # Cross-validation with optimized parameters
+    cv_model = RandomForestRegressor(
+        n_estimators=20,       # Even fewer trees for CV
+        max_depth=8,           # Reduced depth for CV
+        min_samples_split=10,
+        max_features='sqrt',
+        n_jobs=1,              # Single core for CV to avoid memory issues
+        random_state=42
+    )
+    
+    # Use 4-fold cv
+    print("Running cross-validation...")
     cv_r2_scores = cross_val_score(
-        cv_model, X, y, cv=5, scoring='r2'
+        cv_model, X_sample, y_sample, cv=5, scoring='r2'
     )
     
     cv_rmse_scores = np.sqrt(-cross_val_score(
-        cv_model, X, y, cv=5, scoring='neg_mean_squared_error'
+        cv_model, X_sample, y_sample, cv=5, scoring='neg_mean_squared_error'
     ))
     
     # Store all metrics in a dictionary
@@ -129,7 +151,7 @@ def train_random_forest_model(data_path):
     plt.xlabel('Actual Price')
     plt.ylabel('Predicted Price')
     plt.title('Random Forest: Actual vs Predicted Prices')
-    plt.savefig('random_forest_actual_vs_predicted.png')
+    plt.savefig(os.path.join(script_dir, 'random_forest_actual_vs_predicted.png'))
     plt.close()
     
     # Plot residuals
@@ -140,7 +162,7 @@ def train_random_forest_model(data_path):
     plt.xlabel('Predicted Price')
     plt.ylabel('Residuals')
     plt.title('Random Forest: Residual Plot')
-    plt.savefig('random_forest_residuals.png')
+    plt.savefig(os.path.join(script_dir, 'random_forest_residuals.png'))
     plt.close()
     
     # Feature importance plot
@@ -151,7 +173,7 @@ def train_random_forest_model(data_path):
     plt.title('Top 15 Feature Importances - Random Forest')
     plt.gca().invert_yaxis()  # To have the most important at the top
     plt.tight_layout()
-    plt.savefig('random_forest_feature_importance.png')
+    plt.savefig(os.path.join(script_dir, 'random_forest_feature_importance.png'))
     plt.close()
     
     # Plot error distribution
@@ -161,26 +183,28 @@ def train_random_forest_model(data_path):
     plt.xlabel('Prediction Error')
     plt.ylabel('Frequency')
     plt.title('Random Forest: Error Distribution')
-    plt.savefig('random_forest_error_distribution.png')
+    plt.savefig(os.path.join(script_dir, 'random_forest_error_distribution.png'))
     plt.close()
     
     return model, X_test, y_test, metrics
 
 def main():
     # Path to your processed data
-    processed_data_path = "../../Dataset/processed_Resaleflatprices.csv"
-    
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.abspath(os.path.join(script_dir, "../.."))
+    processed_data_path = os.path.join(project_root, "Dataset", "processed_Resaleflatprices.csv")
+
     # Train the model
     model, X_test, y_test, metrics = train_random_forest_model(processed_data_path)
     
     # Save the model
     import joblib
-    joblib.dump(model, 'random_forest_model.pkl')
-    print("Model saved as 'random_forest_model.pkl'")
+    joblib.dump(model, os.path.join(script_dir, 'random_forest_model.pkl'))
+    print(f"Model saved as '{os.path.join(script_dir, 'random_forest_model.pkl')}'")
     
     # Save metrics for later comparison
-    pd.DataFrame([metrics]).to_csv('random_forest_metrics.csv', index=False)
-    print("Metrics saved to 'random_forest_metrics.csv'")
+    pd.DataFrame([metrics]).to_csv(os.path.join(script_dir, 'random_forest_metrics.csv'), index=False)
+    print(f"Metrics saved to '{os.path.join(script_dir, 'random_forest_metrics.csv')}'")
 
 if __name__ == "__main__":
     main()

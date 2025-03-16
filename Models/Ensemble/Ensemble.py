@@ -8,6 +8,7 @@ from sklearn.ensemble import RandomForestRegressor
 import matplotlib.pyplot as plt
 import joblib
 import time
+import os
 
 def mean_absolute_percentage_error(y_true, y_pred):
     """Calculate Mean Absolute Percentage Error"""
@@ -148,6 +149,9 @@ def train_ensemble_model(data_path):
     y_test (Series): Test target values
     metrics (dict): Dictionary of performance metrics
     """
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
+
     # Load the processed data
     print("Loading data from:", data_path)
     df = pd.read_csv(data_path)
@@ -214,7 +218,7 @@ def train_ensemble_model(data_path):
     plt.xlabel('Actual Price')
     plt.ylabel('Predicted Price')
     plt.title('Ensemble Model: Actual vs Predicted Prices')
-    plt.savefig('ensemble_actual_vs_predicted.png')
+    plt.savefig(os.path.join(script_dir,'ensemble_actual_vs_predicted.png'))
     plt.close()
     
     # Plot residuals
@@ -225,7 +229,7 @@ def train_ensemble_model(data_path):
     plt.xlabel('Predicted Price')
     plt.ylabel('Residuals')
     plt.title('Ensemble Model: Residual Plot')
-    plt.savefig('ensemble_residuals.png')
+    plt.savefig(os.path.join(script_dir,'ensemble_residuals.png'))
     plt.close()
     
     # Plot error distribution
@@ -235,7 +239,7 @@ def train_ensemble_model(data_path):
     plt.xlabel('Prediction Error')
     plt.ylabel('Frequency')
     plt.title('Ensemble Model: Error Distribution')
-    plt.savefig('ensemble_error_distribution.png')
+    plt.savefig(os.path.join(script_dir,'ensemble_error_distribution.png'))
     plt.close()
     
     # Plot model weights
@@ -246,30 +250,38 @@ def train_ensemble_model(data_path):
     plt.ylim(0, 1)
     for i, w in enumerate(ensemble.weights):
         plt.text(i, w + 0.02, f'{w:.2f}', ha='center')
-    plt.savefig('ensemble_weights.png')
+    plt.savefig(os.path.join(script_dir,'ensemble_weights.png'))
     plt.close()
     
     return ensemble, X_test, y_test, metrics
 
 def main():
     # Path to your processed data
-    processed_data_path = "../../Dataset/processed_Resaleflatprices.csv"
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
+    project_root = os.path.abspath(os.path.join(script_dir, "../.."))
+    processed_data_path = os.path.join(project_root, "Dataset", "processed_Resaleflatprices.csv")
     
     # Train the ensemble model
     ensemble, X_test, y_test, metrics = train_ensemble_model(processed_data_path)
     
     # Save the model
-    ensemble.save('ensemble_model.pkl')
+    ensemble.save(os.path.join(script_dir, 'ensemble_model.pkl'))
+
     
     # Save metrics for comparison
-    pd.DataFrame([metrics]).to_csv('ensemble_metrics.csv', index=False)
+    pd.DataFrame([metrics]).to_csv(os.path.join(script_dir, 'ensemble_metrics.csv'), index=False)
     print("Metrics saved to 'ensemble_metrics.csv'")
     
     # Load all metrics for comparison
     try:
-        lr_metrics = pd.read_csv('../Linear Regression/linear_regression_metrics.csv')
-        dt_metrics = pd.read_csv('../Decision Tree/decision_tree_metrics.csv')
-        rf_metrics = pd.read_csv('../Random Forest/random_forest_metrics.csv')
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        models_dir = os.path.dirname(script_dir)  # Parent directory containing all model folders
+
+
+        lr_metrics = pd.read_csv(os.path.join(models_dir, 'Linear Regression', 'linear_regression_metrics.csv'))
+        dt_metrics = pd.read_csv(os.path.join(models_dir, 'Decision Tree', 'decision_tree_metrics.csv'))
+        rf_metrics = pd.read_csv(os.path.join(models_dir, 'Random Forest', 'random_forest_metrics.csv'))
         
         # Combine all metrics
         all_metrics = pd.concat([
@@ -283,7 +295,7 @@ def main():
         comparison_metrics = all_metrics[['model_name', 'rmse', 'mae', 'r2', 'mape', 'training_time', 'prediction_time']]
         
         # Save comparison to CSV
-        comparison_metrics.to_csv('model_comparison.csv', index=False)
+        comparison_metrics.to_csv(os.path.join(script_dir, 'model_comparison.csv'), index=False)
         print("Model comparison saved to 'model_comparison.csv'")
         
         # Create comparison visualization
@@ -314,7 +326,7 @@ def main():
         plt.xticks(rotation=45, ha='right')
         
         plt.tight_layout()
-        plt.savefig('model_comparison.png')
+        plt.savefig(os.path.join(script_dir, 'model_comparison.png'))
         plt.close()
         
         print("Model comparison visualization saved to 'model_comparison.png'")

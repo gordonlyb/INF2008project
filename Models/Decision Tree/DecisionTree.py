@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import os
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.tree import DecisionTreeRegressor, plot_tree
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
@@ -26,6 +27,10 @@ def train_decision_tree_model(data_path):
     y_test (Series): Test target values
     metrics (dict): Dictionary of performance metrics
     """
+
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
+
     # Load the processed data
     print("Loading data from:", data_path)
     df = pd.read_csv(data_path)
@@ -120,7 +125,7 @@ def train_decision_tree_model(data_path):
     plt.xlabel('Actual Price')
     plt.ylabel('Predicted Price')
     plt.title('Decision Tree: Actual vs Predicted Prices')
-    plt.savefig('decision_tree_actual_vs_predicted.png')
+    plt.savefig(os.path.join(script_dir,'decision_tree_actual_vs_predicted.png'))
     plt.close()
     
     # Plot residuals
@@ -131,14 +136,14 @@ def train_decision_tree_model(data_path):
     plt.xlabel('Predicted Price')
     plt.ylabel('Residuals')
     plt.title('Decision Tree: Residual Plot')
-    plt.savefig('decision_tree_residuals.png')
+    plt.savefig(os.path.join(script_dir,'decision_tree_residuals.png'))
     plt.close()
     
     # Visualize the decision tree (limiting to top levels for clarity)
     plt.figure(figsize=(20, 10))
     plot_tree(model, max_depth=3, feature_names=X_train.columns, filled=True, fontsize=10)
     plt.title('Decision Tree Structure (Limited to Depth 3)')
-    plt.savefig('decision_tree_structure.png', bbox_inches='tight')
+    plt.savefig(os.path.join(script_dir,'decision_tree_structure.png'), bbox_inches='tight')
     plt.close()
     
     # Feature importance plot
@@ -148,25 +153,27 @@ def train_decision_tree_model(data_path):
     plt.xlabel('Importance')
     plt.title('Top 10 Feature Importances - Decision Tree')
     plt.gca().invert_yaxis()  # To have the most important at the top
-    plt.savefig('decision_tree_feature_importance.png')
+    plt.savefig(os.path.join(script_dir,'decision_tree_feature_importance.png'))
     plt.close()
     
     return model, X_test, y_test, metrics
 
 def main():
     # Path to your processed data
-    processed_data_path = "../../Dataset/processed_Resaleflatprices.csv"
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.abspath(os.path.join(script_dir, "../.."))
+    processed_data_path = os.path.join(project_root, "Dataset", "processed_Resaleflatprices.csv")
     
     # Train the model
     model, X_test, y_test, metrics = train_decision_tree_model(processed_data_path)
     
     # Save the model
     import joblib
-    joblib.dump(model, 'decision_tree_model.pkl')
+    joblib.dump(model, os.path.join(script_dir, 'decision_tree_model.pkl'))
     print("Model saved as 'decision_tree_model.pkl'")
     
     # Save metrics for later comparison
-    pd.DataFrame([metrics]).to_csv('decision_tree_metrics.csv', index=False)
+    pd.DataFrame([metrics]).to_csv(os.path.join(script_dir, 'decision_tree_metrics.csv'), index=False)
     print("Metrics saved to 'decision_tree_metrics.csv'")
 
 if __name__ == "__main__":

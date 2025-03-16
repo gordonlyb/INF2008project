@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import os
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
@@ -26,6 +27,9 @@ def train_linear_regression_model(data_path):
     y_test (Series): Test target values
     metrics (dict): Dictionary of performance metrics
     """
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
+
     # Load the processed data
     print("Loading data from:", data_path)
     df = pd.read_csv(data_path)
@@ -119,7 +123,7 @@ def train_linear_regression_model(data_path):
     plt.xlabel('Actual Price')
     plt.ylabel('Predicted Price')
     plt.title('Linear Regression: Actual vs Predicted Prices')
-    plt.savefig('linear_regression_actual_vs_predicted.png')
+    plt.savefig(os.path.join(script_dir,'linear_regression_actual_vs_predicted.png'))
     plt.close()
     
     # Plot residuals
@@ -130,7 +134,7 @@ def train_linear_regression_model(data_path):
     plt.xlabel('Predicted Price')
     plt.ylabel('Residuals')
     plt.title('Linear Regression: Residual Plot')
-    plt.savefig('linear_regression_residuals.png')
+    plt.savefig(os.path.join(script_dir,'linear_regression_residuals.png'))
     plt.close()
     
     # Plot feature importance (top 15 coefficients)
@@ -142,7 +146,7 @@ def train_linear_regression_model(data_path):
     plt.gca().invert_yaxis()  # To have the highest coefficient at the top
     plt.axvline(x=0, color='k', linestyle='--')  # Add vertical line at 0
     plt.tight_layout()
-    plt.savefig('linear_regression_feature_importance.png')
+    plt.savefig(os.path.join(script_dir,'linear_regression_feature_importance.png'))
     plt.close()
     
     # Plot error distribution
@@ -152,7 +156,7 @@ def train_linear_regression_model(data_path):
     plt.xlabel('Prediction Error')
     plt.ylabel('Frequency')
     plt.title('Linear Regression: Error Distribution')
-    plt.savefig('linear_regression_error_distribution.png')
+    plt.savefig(os.path.join(script_dir,'linear_regression_error_distribution.png'))
     plt.close()
     
     # Q-Q plot to check for normality of residuals
@@ -160,26 +164,29 @@ def train_linear_regression_model(data_path):
     plt.figure(figsize=(10, 6))
     stats.probplot(residuals, dist="norm", plot=plt)
     plt.title('Linear Regression: Q-Q Plot of Residuals')
-    plt.savefig('linear_regression_qq_plot.png')
+    plt.savefig(os.path.join(script_dir,'linear_regression_qq_plot.png'))
     plt.close()
     
     return model, X_test, y_test, metrics
 
 def main():
-    # Path to your processed data
-    processed_data_path = "../../Dataset/processed_Resaleflatprices.csv"
+    # Get the absolute directory path of the script
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
+    project_root = os.path.abspath(os.path.join(script_dir, "../.."))
+    processed_data_path = os.path.join(project_root, "Dataset", "processed_Resaleflatprices.csv")
     
     # Train the model
     model, X_test, y_test, metrics = train_linear_regression_model(processed_data_path)
     
-    # Save the model
+    # Save the model in the same directory as the script
     import joblib
-    joblib.dump(model, 'linear_regression_model.pkl')
-    print("Model saved as 'linear_regression_model.pkl'")
+    joblib.dump(model, os.path.join(script_dir, 'linear_regression_model.pkl'))
+    print(f"Model saved to: {os.path.join(script_dir, 'linear_regression_model.pkl')}")
     
-    # Save metrics for later comparison
-    pd.DataFrame([metrics]).to_csv('linear_regression_metrics.csv', index=False)
-    print("Metrics saved to 'linear_regression_metrics.csv'")
+    # Save metrics to the same directory as the script
+    pd.DataFrame([metrics]).to_csv(os.path.join(script_dir, 'linear_regression_metrics.csv'), index=False)
+    print(f"Metrics saved to: {os.path.join(script_dir, 'linear_regression_metrics.csv')}")
 
 if __name__ == "__main__":
     main()
