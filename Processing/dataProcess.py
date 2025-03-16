@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import MinMaxScaler
 
@@ -18,7 +19,7 @@ def town_encoding(df):
 
         town_df = pd.DataFrame(town_encoded, columns=town_names, index=df.index)
         
-        #df = df.drop(columns=['town'])  # Drop original column
+        df = df.drop(columns=['town'])  # Drop original column
         df = pd.concat([df, town_df], axis=1)  # Merge encoded columns
     return df
 
@@ -31,7 +32,7 @@ def flat_encoding(df):
 
         flat_df = pd.DataFrame(flat_encoded, columns=flat_names, index=df.index)
         
-        #df = df.drop(columns=['flat_type'])
+        df = df.drop(columns=['flat_type'])
         df = pd.concat([df, flat_df], axis=1)
     return df
 
@@ -43,23 +44,25 @@ def flat_model_encoding(df):
         model_names = [col.replace("flat_model_", "") for col in encoder.get_feature_names_out(['flat_model'])]
         model_df = pd.DataFrame(model_encoded, columns=model_names, index=df.index)
         
-        #df = df.drop(columns=['flat_model'])
+        df = df.drop(columns=['flat_model'])
         df = pd.concat([df, model_df], axis=1)
     return df
 
 def convert_lease(lease_str):
-    parts = lease_str.split()
-    if len(parts) == 2:  # e.g., "50 years"
-        years = int(parts[0])
-        months = 0
-    elif len(parts) >= 3:  # e.g., "74 years 08 months"
-        years = int(parts[0])
-        months = int(parts[2])
-    else:
-        # Handle unexpected format, e.g., return 0 or raise an error
-        years = 0
-        months = 0
-    return years + months / 12
+    try:
+        parts = lease_str.split()
+        if len(parts) == 2:  # "50 years"
+            years = int(parts[0])
+            months = 0
+        elif len(parts) >= 3:  # "74 years 08 months"
+            years = int(parts[0])
+            months = int(parts[2])
+        else:
+            raise ValueError(f"Unexpected lease format: {lease_str}")
+        return years + months / 12
+    except Exception as e:
+        print(f"Error parsing lease: {lease_str}. Defaulting to NaN.")
+        return np.nan
 
 def lease_encoding(df):
     if "remaining_lease" in df.columns:
