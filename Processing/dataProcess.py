@@ -88,6 +88,7 @@ def load_and_process(file_path, output_path):
         df = storey_encoding(df)
         df = flat_model_encoding(df)
         df = lease_encoding(df)
+        df = df.drop(columns=['month'])
 
         scaler = MinMaxScaler()
         numerical_cols = ['floor_area_sqm', 'Average_storey_range', 'remaining_lease']
