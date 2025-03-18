@@ -1,0 +1,7 @@
+Category,Total Importance,Feature Count,Avg Importance/Feature,Top Features
+Price Ratio,0.48772812,51,0.009563296,"EXECUTIVE_price_ratio, BUKIT MERAH_price_ratio, Terrace_price_ratio"
+Location,0.44737306,40,0.011184326,"BUKIT MERAH_price_ratio, BISHAN_price_ratio, QUEENSTOWN"
+Flat Type,0.26479873,14,0.018914195,"EXECUTIVE_price_ratio, Type S1, Type S2"
+Other,0.113455705,23,0.0049328567,"Terrace, CHOA CHU KANG, DBSS"
+Size & Floor,0.05418905,5,0.01083781,"CENTRAL AREA_price_ratio, CENTRAL AREA, floor_area_sqm"
+Lease,0.01305742,4,0.003264355,"long_lease, short_lease, remaining_lease"
