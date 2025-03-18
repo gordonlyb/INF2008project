@@ -8,6 +8,7 @@ import time
 import optuna  # For hyperparameter optimization
 import joblib  # For saving models
 from sklearn.model_selection import train_test_split
+import os
 
 # Set plotting style
 sns.set_style("whitegrid")
@@ -48,12 +49,28 @@ def split_data(csv_path, target_col='resale_price', test_size=0.2, val_size=0.25
     
     return train, val, test
 
+def get_top_100_features():
+    """Get the top 100 features from feature importance analysis"""
+    try:
+        # Try to load from feature importance analysis CSV if it exists
+        importance_df = pd.read_csv('feature_analysis/xgboost_importance.csv')
+        top_features = importance_df.sort_values('Importance', ascending=False).head(100)['Feature'].tolist()
+    except:
+        # If file doesn't exist, return None - we'll handle this in load_data
+        print("Feature importance file not found. Will determine important features from model.")
+        top_features = None
+    
+    return top_features
+
 def load_data():
-    """Load the split datasets"""
+    """Load the split datasets and filter to top 100 features"""
     print("Loading datasets...")
     processed_csv = "../../Dataset/processed_Resaleflatprices_XGB.csv"
     train_data, val_data, test_data = split_data(processed_csv)
-
+    
+    # Get top 100 features
+    top_features = get_top_100_features()
+    
     # Split features and target
     X_train = train_data.drop('resale_price', axis=1)
     y_train = train_data['resale_price']
@@ -63,6 +80,18 @@ def load_data():
     
     X_test = test_data.drop('resale_price', axis=1)
     y_test = test_data['resale_price']
+    
+    # Filter to top 100 features if we have them
+    if top_features:
+        print(f"Filtering to top 100 features based on importance analysis...")
+        X_train = X_train[top_features]
+        X_val = X_val[top_features]
+        X_test = X_test[top_features]
+        print(f"Using {len(top_features)} features")
+    else:
+        # If we don't have feature importance yet, we'll train with all features
+        # later code will extract feature importance
+        print(f"Using all {X_train.shape[1]} features")
     
     print(f"Training set: {X_train.shape}")
     print(f"Validation set: {X_val.shape}")
@@ -154,6 +183,10 @@ def plot_feature_importance(model, X_train):
     
     # Sort by importance
     feat_importances = feat_importances.sort_values('Importance', ascending=False)
+    
+    # Save to CSV for future use
+    os.makedirs('feature_analysis', exist_ok=True)
+    feat_importances.to_csv('feature_analysis/xgboost_importance.csv', index=False)
     
     # Display top 20 features
     top_features = feat_importances.head(20)
@@ -259,15 +292,36 @@ def optimize_xgboost(X_train, y_train, X_val, y_val, n_trials=100):
     return best_model, train_results, val_results, best_params
 
 def main():
-    # Load data
+
+    # Load data (now with top 100 features)
     X_train, y_train, X_val, y_val, X_test, y_test = load_data()
     
     # Train baseline model
     baseline_model, baseline_train_results, baseline_val_results = train_baseline_xgboost(
         X_train, y_train, X_val, y_val)
     
-    # Plot feature importance
-    feature_importance = plot_feature_importance(baseline_model, X_train)
+    # If we started with all features, now extract feature importance
+    # and refilter to top 100 for subsequent steps
+    if X_train.shape[1] > 100:
+        feature_importance = plot_feature_importance(baseline_model, X_train)
+        # Get top 100 features
+        top_features = feature_importance.head(100)['Feature'].tolist()
+        
+        print("\nRefiltering to top 100 features based on model importance...")
+        # Refilter data
+        X_train = X_train[top_features]
+        X_val = X_val[top_features]
+        X_test = X_test[top_features]
+        
+        print(f"New shapes - Training: {X_train.shape}, Validation: {X_val.shape}, Test: {X_test.shape}")
+        
+        # Retrain baseline with top 100 features
+        baseline_model, baseline_train_results, baseline_val_results = train_baseline_xgboost(
+            X_train, y_train, X_val, y_val)
+    else:
+        # Still plot feature importance for the current model
+        feature_importance = plot_feature_importance(baseline_model, X_train)
+        
     print("\nTop 10 important features:")
     print(feature_importance.head(10))
     
@@ -275,38 +329,91 @@ def main():
     plot_predictions(y_val, baseline_val_results['predictions'], "Baseline Model: Actual vs Predicted")
     
     # Save baseline model
-    joblib.dump(baseline_model, 'baseline_xgboost_model.pkl')
-    print("\nBaseline model saved as 'baseline_xgboost_model.pkl'")
+    joblib.dump(baseline_model, 'baseline_xgboost_model_top100.pkl')
+    print("\nBaseline model saved as 'baseline_xgboost_model_top100.pkl'")
     
-    # Ask if user wants to run hyperparameter optimization
-    run_optimization = input("\nRun hyperparameter optimization? (y/n): ").lower() == 'y'
+    # Check if best parameters from previous run exist
+    best_params_file = 'best_xgboost_params_top100.txt'
+    has_previous_params = os.path.exists(best_params_file)
     
-    if run_optimization:
+    # Initialize these flags to track what approach we take
+    use_previous = False
+    run_optimization = False
+    
+    if has_previous_params:
+        print(f"\nFound existing hyperparameters in '{best_params_file}'")
+        use_previous = input("Use these hyperparameters instead of running optimization again? (y/n): ").lower() == 'y'
+    
+    # If not using previous params, ask about running optimization
+    if not use_previous:
+        run_optimization = input("\nRun hyperparameter optimization? (y/n): ").lower() == 'y'
+        
+    # Handle the different paths
+    if use_previous:
+        # Load parameters from file
+        best_params = {}
+        with open(best_params_file, 'r') as f:
+            for line in f:
+                if ':' in line:
+                    param, value = line.strip().split(':', 1)
+                    param = param.strip()
+                    value = value.strip()
+                    # Convert value to appropriate type
+                    if param in ['n_estimators', 'max_depth', 'min_child_weight']:
+                        best_params[param] = int(value)
+                    else:
+                        try:
+                            best_params[param] = float(value)
+                        except ValueError:
+                            best_params[param] = value
+        
+        print("Loaded hyperparameters:")
+        print(best_params)
+        
+        # Train model with loaded parameters
+        optimized_model = xgb.XGBRegressor(**best_params, eval_metric='rmse', random_state=42)
+        
+        print("\nTraining model with previously optimized hyperparameters...")
+        optimized_model.fit(
+            X_train, y_train,
+            eval_set=[(X_val, y_val)],
+            verbose=True
+        )
+        
+        # Evaluate the model
+        optimized_train_results = evaluate_model(optimized_model, X_train, y_train, "Training (Optimized)")
+        optimized_val_results = evaluate_model(optimized_model, X_val, y_val, "Validation (Optimized)")
+        
+    elif run_optimization:
         # Optimize model
         optimized_model, optimized_train_results, optimized_val_results, best_params = optimize_xgboost(
             X_train, y_train, X_val, y_val, n_trials=50)
         
-        # Plot optimized predictions
-        plot_predictions(y_val, optimized_val_results['predictions'], "Optimized Model: Actual vs Predicted")
-        
-        # Save optimized model
-        joblib.dump(optimized_model, 'optimized_xgboost_model.pkl')
-        print("\nOptimized model saved as 'optimized_xgboost_model.pkl'")
-        
         # Save best parameters
-        with open('best_xgboost_params.txt', 'w') as f:
+        with open(best_params_file, 'w') as f:
             for param, value in best_params.items():
                 f.write(f"{param}: {value}\n")
-        
-        # Evaluate on test set
-        test_results = evaluate_model(optimized_model, X_test, y_test, "Test Set (Final Evaluation)")
-        plot_predictions(y_test, test_results['predictions'], "Test Set: Actual vs Predicted")
     else:
-        # Evaluate baseline on test set
-        test_results = evaluate_model(baseline_model, X_test, y_test, "Test Set (Baseline Model)")
-        plot_predictions(y_test, test_results['predictions'], "Test Set: Actual vs Predicted")
+        # Use baseline model as final model
+        print("\nSkipping optimization. Using baseline model as final model.")
+        optimized_model = baseline_model
+        optimized_train_results = baseline_train_results
+        optimized_val_results = baseline_val_results
     
-    print("\nStep 2 (Single Model Optimization) completed!")
+    # Only save optimized model if we actually performed optimization or loaded previous params
+    if run_optimization or use_previous:
+        # Save optimized model
+        joblib.dump(optimized_model, 'optimized_xgboost_model_top100.pkl')
+        print("\nOptimized model saved as 'optimized_xgboost_model_top100.pkl'")
+        
+        # Plot optimized predictions
+        plot_predictions(y_val, optimized_val_results['predictions'], "Optimized Model: Actual vs Predicted")
+    
+    # Evaluate on test set with final model (either optimized or baseline)
+    test_results = evaluate_model(optimized_model, X_test, y_test, "Test Set (Final Evaluation)")
+    plot_predictions(y_test, test_results['predictions'], "Test Set: Actual vs Predicted")
+    
+    print("\nModel training with Top 100 Features completed!")
 
 if __name__ == "__main__":
     main()
