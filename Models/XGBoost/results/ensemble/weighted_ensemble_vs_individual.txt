@@ -1,0 +1,6 @@
+Weighted Ensemble vs Individual Models Comparison
+==================================================
+RMSE: Ensemble = 53891.6390, Best Individual = 54702.7000 (Model 3), Improvement: +1.50%
+R2: Ensemble = 0.9101, Best Individual = 0.9073 (Model 3), Improvement: +0.30%
+MAE: Ensemble = 38251.0775, Best Individual = 38800.9971 (Model 3), Improvement: +1.44%
+MAPE: Ensemble = 7.7088, Best Individual = 7.8128 (Model 3), Improvement: +1.35%

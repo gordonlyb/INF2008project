@@ -1,0 +1,39 @@
+Meta-Model Stacking Results
+==================================================
+
+Test Set Metrics:
+RMSE: $54532.90
+R² Score: 0.9079
+MAE: $38687.89
+MAPE: 7.78%
+
+Comparison with Uniform Ensemble and Best Base Model:
+--------------------------------------------------
+RMSE:
+  Meta-Model: 54532.9022
+  Uniform Ensemble: 53694.4757
+  Best Base Model: 54702.7000 (Model 3)
+  Improvement over Uniform: -1.54%
+  Improvement over Best Base: +0.31%
+
+R2:
+  Meta-Model: 0.9079
+  Uniform Ensemble: 0.9107
+  Best Base Model: 0.9073 (Model 3)
+  Improvement over Uniform: -0.31%
+  Improvement over Best Base: +0.06%
+
+MAE:
+  Meta-Model: 38687.8939
+  Uniform Ensemble: 38138.2369
+  Best Base Model: 38800.9971 (Model 3)
+  Improvement over Uniform: -1.42%
+  Improvement over Best Base: +0.29%
+
+MAPE:
+  Meta-Model: 7.7820
+  Uniform Ensemble: 7.6906
+  Best Base Model: 7.8128 (Model 3)
+  Improvement over Uniform: -1.17%
+  Improvement over Best Base: +0.40%
+

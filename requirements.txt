@@ -7,3 +7,6 @@ statsmodels
 scipy
 xgboost
 optuna
+shap
+lightgbm
+catboost

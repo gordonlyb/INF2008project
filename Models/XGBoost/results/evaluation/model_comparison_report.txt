@@ -1,0 +1,112 @@
+MODEL COMPARISON SUMMARY
+==================================================
+
+PERFORMANCE RANKING (BY RMSE)
+--------------------------------------------------
+8. Uniform Ensemble
+   RMSE: $53694.48
+   R² Score: 0.9107
+   MAE: $38138.24
+   MAPE: 7.69%
+   Inference Time: 0.0679 ms/sample
+
+5. LightGBM Fold 3
+   RMSE: $54702.70
+   R² Score: 0.9073
+   MAE: $38801.00
+   MAPE: 7.81%
+   Inference Time: 0.0131 ms/sample
+
+3. LightGBM Fold 1
+   RMSE: $54749.63
+   R² Score: 0.9072
+   MAE: $38918.83
+   MAPE: 7.84%
+   Inference Time: 0.0127 ms/sample
+
+4. LightGBM Fold 2
+   RMSE: $54815.87
+   R² Score: 0.9069
+   MAE: $38944.27
+   MAPE: 7.84%
+   Inference Time: 0.0131 ms/sample
+
+7. LightGBM Fold 5
+   RMSE: $54816.09
+   R² Score: 0.9069
+   MAE: $39022.20
+   MAPE: 7.86%
+   Inference Time: 0.0125 ms/sample
+
+6. LightGBM Fold 4
+   RMSE: $54820.65
+   R² Score: 0.9069
+   MAE: $38886.83
+   MAPE: 7.82%
+   Inference Time: 0.0177 ms/sample
+
+2. LightGBM (Base)
+   RMSE: $54929.27
+   R² Score: 0.9066
+   MAE: $39046.54
+   MAPE: 7.86%
+   Inference Time: 0.0168 ms/sample
+
+1. XGBoost (Base)
+   RMSE: $55418.14
+   R² Score: 0.9049
+   MAE: $39430.22
+   MAPE: 7.94%
+   Inference Time: 0.0077 ms/sample
+
+
+IMPROVEMENT ANALYSIS
+--------------------------------------------------
+Baseline Model: XGBoost (Base)
+Best Model: Uniform Ensemble
+RMSE Improvement: 3.11%
+
+
+BEST MODEL ERROR ANALYSIS
+--------------------------------------------------
+Model: Uniform Ensemble
+
+Error Percentiles:
+  50th Percentile Absolute Error: $27035.34
+  50th Percentile Percentage Error: 5.66%
+  75th Percentile Absolute Error: $51619.34
+  75th Percentile Percentage Error: 10.62%
+  90th Percentile Absolute Error: $85611.08
+  90th Percentile Percentage Error: 16.87%
+  95th Percentile Absolute Error: $112078.54
+  95th Percentile Percentage Error: 21.68%
+  99th Percentile Absolute Error: $177781.97
+  99th Percentile Percentage Error: 33.25%
+
+Price Band Analysis:
+
+  < $300K (3193 properties):
+    RMSE: $35227.57
+    MAPE: 10.38%
+
+  $300K-$500K (18258 properties):
+    RMSE: $43567.98
+    MAPE: 7.91%
+
+  $500K-$700K (12677 properties):
+    RMSE: $55715.41
+    MAPE: 7.08%
+
+  $700K-$1M (5540 properties):
+    RMSE: $74393.97
+    MAPE: 6.81%
+
+  > $1M (521 properties):
+    RMSE: $117855.03
+    MAPE: 7.90%
+
+
+CONCLUSION AND RECOMMENDATIONS
+--------------------------------------------------
+The Uniform Ensemble model performs best and is recommended for deployment.
+Benefits include superior accuracy, good generalization, and implementation simplicity.

@@ -1,0 +1,101 @@
+Feature,Importance
+remaining_lease,25770
+floor_area_sqm,16731
+area_by_storey,13671
+lease_exp_factor,2422
+Model A,943
+Premium Apartment_price_ratio,730
+Improved_price_ratio,650
+SENGKANG_price_ratio,522
+5 ROOM,518
+JURONG WEST_price_ratio,444
+KALLANG/WHAMPOA,438
+BUKIT MERAH_price_ratio,429
+YISHUN,420
+PUNGGOL,414
+BEDOK_price_ratio,411
+3 ROOM_price_ratio,403
+Maisonette_price_ratio,397
+WOODLANDS,396
+HOUGANG_price_ratio,392
+TAMPINES_price_ratio,374
+SEMBAWANG_price_ratio,357
+CHOA CHU KANG,356
+QUEENSTOWN,348
+BUKIT PANJANG_price_ratio,345
+4 ROOM,330
+New Generation_price_ratio,327
+BUKIT BATOK,323
+TOA PAYOH,319
+DBSS,307
+JURONG EAST_price_ratio,295
+CLEMENTI,285
+EXECUTIVE,273
+GEYLANG,257
+PASIR RIS_price_ratio,251
+SERANGOON,230
+BISHAN,207
+Simplified_price_ratio,175
+Standard,165
+CENTRAL AREA_price_ratio,148
+Model A_price_ratio,118
+2 ROOM,112
+BUKIT TIMAH,109
+MARINE PARADE_price_ratio,96
+Model A2,94
+Premium Apartment,82
+Adjoined flat,81
+YISHUN_price_ratio,78
+long_lease,70
+Improved,66
+Type S1,51
+DBSS_price_ratio,48
+KALLANG/WHAMPOA_price_ratio,48
+Maisonette,48
+GEYLANG_price_ratio,48
+BUKIT MERAH,46
+3 ROOM,44
+SENGKANG,43
+WOODLANDS_price_ratio,40
+QUEENSTOWN_price_ratio,40
+Standard_price_ratio,39
+4 ROOM_price_ratio,39
+JURONG EAST,38
+Model A-Maisonette,38
+JURONG WEST,37
+PUNGGOL_price_ratio,36
+BUKIT BATOK_price_ratio,36
+PASIR RIS,35
+CHOA CHU KANG_price_ratio,34
+BUKIT PANJANG,34
+Multi Generation_price_ratio,33
+SEMBAWANG,33
+New Generation,32
+TAMPINES,30
+BEDOK,29
+TOA PAYOH_price_ratio,27
+CLEMENTI_price_ratio,27
+Premium Apartment Loft_price_ratio,27
+Terrace_price_ratio,26
+HOUGANG,26
+BISHAN_price_ratio,24
+SERANGOON_price_ratio,23
+short_lease,23
+CENTRAL AREA,20
+Type S2,19
+EXECUTIVE_price_ratio,18
+Simplified,16
+Improved-Maisonette_price_ratio,12
+Adjoined flat_price_ratio,12
+2 ROOM_price_ratio,11
+MARINE PARADE,9
+BUKIT TIMAH_price_ratio,5
+Type S1_price_ratio,4
+Model A-Maisonette_price_ratio,4
+Premium Apartment Loft,4
+Multi Generation,2
+Terrace,2
+Type S2_price_ratio,1
+Improved-Maisonette,0
+MULTI-GENERATION_price_ratio,0
+MULTI-GENERATION,0

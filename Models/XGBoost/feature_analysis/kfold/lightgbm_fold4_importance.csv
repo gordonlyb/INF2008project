@@ -1,0 +1,101 @@
+Feature,Importance
+remaining_lease,27787
+floor_area_sqm,17838
+area_by_storey,15105
+lease_exp_factor,2578
+Model A,904
+Improved_price_ratio,801
+Premium Apartment_price_ratio,717
+SENGKANG_price_ratio,591
+5 ROOM,551
+TAMPINES_price_ratio,457
+JURONG WEST_price_ratio,453
+PUNGGOL,450
+BUKIT MERAH_price_ratio,433
+WOODLANDS,430
+3 ROOM_price_ratio,430
+YISHUN,425
+BEDOK_price_ratio,417
+KALLANG/WHAMPOA,402
+Maisonette_price_ratio,402
+CHOA CHU KANG,400
+4 ROOM,395
+SEMBAWANG_price_ratio,385
+New Generation_price_ratio,369
+HOUGANG_price_ratio,368
+GEYLANG,368
+BUKIT PANJANG_price_ratio,365
+BUKIT BATOK,365
+QUEENSTOWN,357
+TOA PAYOH,354
+DBSS,335
+JURONG EAST_price_ratio,300
+EXECUTIVE,285
+CLEMENTI,281
+BISHAN,278
+PASIR RIS_price_ratio,271
+SERANGOON,251
+Simplified_price_ratio,209
+Standard,172
+CENTRAL AREA_price_ratio,162
+Model A_price_ratio,122
+BUKIT TIMAH,100
+2 ROOM,98
+long_lease,97
+MARINE PARADE_price_ratio,94
+Model A2,93
+Improved,90
+Adjoined flat,88
+Premium Apartment,81
+GEYLANG_price_ratio,61
+Maisonette,57
+SENGKANG,57
+WOODLANDS_price_ratio,55
+YISHUN_price_ratio,53
+CHOA CHU KANG_price_ratio,52
+BUKIT MERAH,47
+DBSS_price_ratio,46
+3 ROOM,43
+JURONG WEST,42
+QUEENSTOWN_price_ratio,42
+KALLANG/WHAMPOA_price_ratio,40
+PUNGGOL_price_ratio,39
+Standard_price_ratio,38
+JURONG EAST,38
+BUKIT PANJANG,37
+SEMBAWANG,37
+Type S1,37
+PASIR RIS,36
+BUKIT BATOK_price_ratio,36
+TOA PAYOH_price_ratio,36
+Model A-Maisonette,35
+BEDOK,34
+New Generation,33
+Multi Generation_price_ratio,33
+short_lease,31
+Premium Apartment Loft_price_ratio,31
+CLEMENTI_price_ratio,30
+4 ROOM_price_ratio,29
+SERANGOON_price_ratio,28
+Terrace_price_ratio,26
+TAMPINES,25
+HOUGANG,24
+Type S2,24
+EXECUTIVE_price_ratio,21
+CENTRAL AREA,20
+BISHAN_price_ratio,19
+2 ROOM_price_ratio,17
+Simplified,16
+Adjoined flat_price_ratio,9
+Improved-Maisonette_price_ratio,9
+Model A-Maisonette_price_ratio,8
+BUKIT TIMAH_price_ratio,6
+Type S1_price_ratio,6
+Terrace,4
+Premium Apartment Loft,3
+MARINE PARADE,3
+Type S2_price_ratio,2
+Improved-Maisonette,1
+Multi Generation,0
+MULTI-GENERATION_price_ratio,0
+MULTI-GENERATION,0

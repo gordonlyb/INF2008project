@@ -1,0 +1,23 @@
+Ensemble Diagnostics Report
+==================================================
+
+Target variable statistics:
+Training: min=$150000.00, max=$1600000.00, mean=$510580.87
+Test: min=$150000.00, max=$1588000.00, mean=$512471.70
+
+Individual model performance on test set:
+Model 1: RMSE=$54749.63, R²=0.9072, MAPE=7.84%
+Model 2: RMSE=$54815.87, R²=0.9069, MAPE=7.84%
+Model 3: RMSE=$54702.70, R²=0.9073, MAPE=7.81%
+Model 4: RMSE=$54820.65, R²=0.9069, MAPE=7.82%
+Model 5: RMSE=$54816.09, R²=0.9069, MAPE=7.86%
+
+Model prediction ranges:
+Model 1: min=$178388.78, max=$1527998.59, mean=$511863.20
+Model 2: min=$174440.56, max=$1485802.12, mean=$511914.23
+Model 3: min=$174349.82, max=$1509707.25, mean=$511690.17
+Model 4: min=$170755.98, max=$1513581.40, mean=$511648.32
+Model 5: min=$171584.37, max=$1518508.28, mean=$511847.97
+
+Ensemble performance:
+Manual ensemble: RMSE=$53694.48, R²=0.9107, MAPE=7.69%

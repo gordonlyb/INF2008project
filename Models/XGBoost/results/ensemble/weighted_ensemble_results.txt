@@ -1,0 +1,15 @@
+Weighted Ensemble Model Results
+==================================================
+Optimal Weights: ['0.0000', '0.0000', '0.4444', '0.3333', '0.2222']
+
+Test Set Metrics:
+RMSE: $53891.64
+R² Score: 0.9101
+MAE: $38251.08
+MAPE: 7.71%
+
+Comparison with Uniform Weights Ensemble:
+RMSE: Declined by -0.37%
+R2: Declined by -0.07%
+MAE: Declined by -0.29%
+MAPE: Declined by -0.24%
