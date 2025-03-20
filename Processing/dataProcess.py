@@ -115,3 +115,6 @@ def processedCSV():
         print(processed_df.head())
     else:
         print("Processing failed.")
+
+if __name__ == "__main__":
+    processedCSV()

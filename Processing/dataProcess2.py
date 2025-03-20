@@ -152,8 +152,8 @@ def load_and_process(file_path, output_path):
         return None
     
 def processedCSV():
-    input_file = "../Dataset/Resaleflatprices.csv"
-    output_file = "../Dataset/processed_Resaleflatprices_XGB.csv"
+    input_file = "Dataset/Resaleflatprices.csv"
+    output_file = "Dataset/processed_Resaleflatprices_XGB.csv"
 
     print("Processing dataset...")
     processed_df = load_and_process(input_file, output_file)
@@ -166,6 +166,5 @@ def processedCSV():
     else:
         print("Processing failed.")
 
-# If you run this file directly
 if __name__ == "__main__":
     processedCSV()
