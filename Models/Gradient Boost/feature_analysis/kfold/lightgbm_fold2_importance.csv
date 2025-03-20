@@ -1,0 +1,101 @@
+Feature,Importance
+remaining_lease,27152
+floor_area_sqm,18052
+area_by_storey,14952
+lease_exp_factor,3265
+Model A_price_ratio,909
+Premium Apartment,825
+4 ROOM,764
+Improved_price_ratio,746
+SENGKANG_price_ratio,565
+JURONG WEST_price_ratio,484
+PUNGGOL,457
+BUKIT MERAH_price_ratio,456
+YISHUN_price_ratio,454
+KALLANG/WHAMPOA,453
+WOODLANDS_price_ratio,439
+Maisonette_price_ratio,423
+BEDOK,417
+TAMPINES,407
+CHOA CHU KANG_price_ratio,391
+HOUGANG_price_ratio,391
+SEMBAWANG_price_ratio,383
+BUKIT PANJANG_price_ratio,378
+New Generation_price_ratio,374
+BUKIT BATOK_price_ratio,374
+QUEENSTOWN_price_ratio,366
+TOA PAYOH_price_ratio,333
+DBSS,331
+CLEMENTI,303
+JURONG EAST,285
+PASIR RIS,281
+GEYLANG_price_ratio,281
+5 ROOM,272
+BISHAN_price_ratio,262
+SERANGOON_price_ratio,234
+3 ROOM,208
+Simplified,200
+Standard,198
+EXECUTIVE_price_ratio,179
+CENTRAL AREA_price_ratio,173
+2 ROOM,136
+Model A,114
+BUKIT TIMAH,97
+Model A2,86
+MARINE PARADE,84
+BEDOK_price_ratio,75
+Improved,73
+Premium Apartment_price_ratio,73
+Adjoined flat,70
+short_lease,59
+Model A-Maisonette,54
+WOODLANDS,52
+JURONG EAST_price_ratio,51
+CHOA CHU KANG,50
+New Generation,47
+QUEENSTOWN,46
+BUKIT PANJANG,46
+BUKIT MERAH,46
+SENGKANG,46
+SEMBAWANG,44
+Type S1,43
+PUNGGOL_price_ratio,43
+JURONG WEST,42
+Maisonette,42
+TAMPINES_price_ratio,41
+CLEMENTI_price_ratio,40
+long_lease,38
+BISHAN,36
+KALLANG/WHAMPOA_price_ratio,36
+Premium Apartment Loft,35
+YISHUN,35
+BUKIT BATOK,33
+3 ROOM_price_ratio,33
+4 ROOM_price_ratio,31
+Multi Generation_price_ratio,29
+Terrace,29
+Simplified_price_ratio,28
+HOUGANG,26
+DBSS_price_ratio,25
+GEYLANG,24
+SERANGOON,24
+Type S2_price_ratio,23
+EXECUTIVE,23
+TOA PAYOH,23
+Standard_price_ratio,21
+PASIR RIS_price_ratio,20
+CENTRAL AREA,19
+Adjoined flat_price_ratio,15
+Improved-Maisonette_price_ratio,12
+MARINE PARADE_price_ratio,8
+BUKIT TIMAH_price_ratio,8
+Model A-Maisonette_price_ratio,7
+MULTI-GENERATION_price_ratio,5
+Type S1_price_ratio,4
+2 ROOM_price_ratio,3
+Type S2,3
+Terrace_price_ratio,2
+Premium Apartment Loft_price_ratio,2
+Improved-Maisonette,2
+Multi Generation,1
+MULTI-GENERATION,0

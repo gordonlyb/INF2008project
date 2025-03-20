@@ -1,5 +1,0 @@
-Best model by RMSE: LightGBM
-RMSE: $54929.27
-R² Score: 0.9066
-MAE: $39046.54
-MAPE: 7.86%

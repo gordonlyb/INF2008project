@@ -1,6 +1,0 @@
-K-Fold Cross-Validation with 5 folds
-==================================================
-Average RMSE: 54725.9990 ± 378.4630
-Average R2: 0.9064 ± 0.0011
-Average MAE: 38811.2009 ± 149.8492
-Average MAPE: 7.8623 ± 0.0390

@@ -1,0 +1,101 @@
+Feature,Importance
+remaining_lease,26728.2
+floor_area_sqm,17647.2
+area_by_storey,14835.0
+lease_exp_factor,3242.2
+Model A_price_ratio,881.4
+Premium Apartment,790.2
+Improved_price_ratio,752.8
+4 ROOM,720.2
+SENGKANG_price_ratio,563.4
+JURONG WEST_price_ratio,463.0
+YISHUN_price_ratio,459.8
+PUNGGOL,440.8
+BUKIT MERAH_price_ratio,440.8
+WOODLANDS_price_ratio,429.8
+TAMPINES,412.2
+Maisonette_price_ratio,411.6
+KALLANG/WHAMPOA,405.8
+BEDOK,394.2
+HOUGANG_price_ratio,392.4
+CHOA CHU KANG_price_ratio,381.8
+BUKIT PANJANG_price_ratio,373.8
+New Generation_price_ratio,373.6
+SEMBAWANG_price_ratio,367.2
+BUKIT BATOK_price_ratio,364.2
+QUEENSTOWN_price_ratio,361.2
+DBSS,349.2
+TOA PAYOH_price_ratio,347.6
+5 ROOM,305.6
+CLEMENTI,305.2
+JURONG EAST,293.6
+GEYLANG_price_ratio,284.6
+PASIR RIS,269.4
+SERANGOON_price_ratio,264.4
+BISHAN_price_ratio,249.0
+3 ROOM,212.0
+Standard,192.8
+Simplified,191.2
+EXECUTIVE_price_ratio,189.6
+CENTRAL AREA_price_ratio,169.6
+2 ROOM,144.0
+Model A,108.0
+Model A2,96.0
+Adjoined flat,89.6
+MARINE PARADE,88.8
+BUKIT TIMAH,88.2
+long_lease,75.2
+Improved,70.2
+Premium Apartment_price_ratio,66.0
+BEDOK_price_ratio,62.6
+SENGKANG,52.4
+WOODLANDS,48.0
+BUKIT MERAH,47.2
+Type S1,46.8
+CHOA CHU KANG,46.6
+Model A-Maisonette,45.8
+New Generation,45.4
+JURONG EAST_price_ratio,44.6
+TAMPINES_price_ratio,44.4
+SEMBAWANG,43.4
+BUKIT PANJANG,43.0
+QUEENSTOWN,42.4
+Maisonette,41.4
+YISHUN,40.6
+4 ROOM_price_ratio,40.0
+JURONG WEST,38.8
+CLEMENTI_price_ratio,38.2
+PUNGGOL_price_ratio,37.2
+KALLANG/WHAMPOA_price_ratio,35.6
+short_lease,35.6
+BUKIT BATOK,34.8
+DBSS_price_ratio,34.4
+3 ROOM_price_ratio,34.0
+Premium Apartment Loft,33.6
+BISHAN,32.4
+Multi Generation_price_ratio,32.2
+TOA PAYOH,31.0
+PASIR RIS_price_ratio,30.0
+GEYLANG,29.0
+HOUGANG,27.6
+Type S2_price_ratio,26.6
+Terrace,26.0
+Simplified_price_ratio,26.0
+SERANGOON,25.6
+Standard_price_ratio,24.2
+EXECUTIVE,21.6
+CENTRAL AREA,15.4
+BUKIT TIMAH_price_ratio,11.0
+Adjoined flat_price_ratio,10.6
+Improved-Maisonette_price_ratio,9.4
+MARINE PARADE_price_ratio,9.0
+2 ROOM_price_ratio,7.0
+MULTI-GENERATION_price_ratio,5.0
+Type S1_price_ratio,4.2
+Model A-Maisonette_price_ratio,3.6
+Premium Apartment Loft_price_ratio,3.4
+Terrace_price_ratio,3.2
+Type S2,2.8
+Improved-Maisonette,2.2
+Multi Generation,0.4
+MULTI-GENERATION,0.0

@@ -1,0 +1,13 @@
+Ensemble Model (Simple Average) Test Results
+==================================================
+RMSE: $53704.26
+R² Score: 0.9107
+MAE: $38145.32
+MAPE: 7.69%
+
+Comparison with Individual Models
+--------------------------------------------------
+RMSE: Ensemble = 53704.2625, Best Individual = 54702.2777 (Model 1), Improvement: +1.86%
+R2: Ensemble = 0.9107, Best Individual = 0.9073 (Model 1), Improvement: +0.37%
+MAE: Ensemble = 38145.3172, Best Individual = 38887.7620 (Model 2), Improvement: +1.95%
+MAPE: Ensemble = 7.6912, Best Individual = 7.8274 (Model 5), Improvement: +1.77%

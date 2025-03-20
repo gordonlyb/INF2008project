@@ -1,0 +1,101 @@
+Feature,Importance
+remaining_lease,27156
+floor_area_sqm,17921
+area_by_storey,15141
+lease_exp_factor,3242
+Model A_price_ratio,937
+Premium Apartment,778
+Improved_price_ratio,775
+4 ROOM,726
+SENGKANG_price_ratio,553
+YISHUN_price_ratio,486
+JURONG WEST_price_ratio,450
+BUKIT MERAH_price_ratio,447
+PUNGGOL,438
+KALLANG/WHAMPOA,428
+TAMPINES,423
+WOODLANDS_price_ratio,423
+BEDOK,408
+CHOA CHU KANG_price_ratio,397
+QUEENSTOWN_price_ratio,381
+Maisonette_price_ratio,381
+SEMBAWANG_price_ratio,377
+DBSS,376
+HOUGANG_price_ratio,375
+TOA PAYOH_price_ratio,371
+BUKIT BATOK_price_ratio,371
+BUKIT PANJANG_price_ratio,367
+New Generation_price_ratio,362
+5 ROOM,329
+GEYLANG_price_ratio,325
+CLEMENTI,303
+JURONG EAST,296
+PASIR RIS,266
+SERANGOON_price_ratio,260
+BISHAN_price_ratio,256
+3 ROOM,227
+EXECUTIVE_price_ratio,206
+Simplified,205
+CENTRAL AREA_price_ratio,194
+Standard,181
+2 ROOM,162
+Model A,113
+Model A2,100
+MARINE PARADE,97
+Adjoined flat,88
+BUKIT TIMAH,85
+Improved,78
+long_lease,76
+BEDOK_price_ratio,59
+Type S1,56
+SENGKANG,55
+short_lease,55
+4 ROOM_price_ratio,50
+Premium Apartment_price_ratio,49
+CHOA CHU KANG,49
+Model A-Maisonette,49
+WOODLANDS,47
+BUKIT MERAH,45
+TAMPINES_price_ratio,44
+SEMBAWANG,43
+QUEENSTOWN,43
+CLEMENTI_price_ratio,42
+Maisonette,42
+Multi Generation_price_ratio,42
+New Generation,41
+BUKIT BATOK,40
+YISHUN,39
+DBSS_price_ratio,38
+TOA PAYOH,37
+KALLANG/WHAMPOA_price_ratio,37
+JURONG WEST,37
+3 ROOM_price_ratio,36
+JURONG EAST_price_ratio,35
+PASIR RIS_price_ratio,34
+Simplified_price_ratio,33
+PUNGGOL_price_ratio,33
+Premium Apartment Loft,32
+HOUGANG,32
+BUKIT PANJANG,32
+GEYLANG,32
+Type S2_price_ratio,31
+BISHAN,29
+SERANGOON,28
+EXECUTIVE,24
+Standard_price_ratio,24
+Terrace,20
+BUKIT TIMAH_price_ratio,16
+CENTRAL AREA,14
+Improved-Maisonette_price_ratio,9
+MARINE PARADE_price_ratio,8
+MULTI-GENERATION_price_ratio,7
+2 ROOM_price_ratio,6
+Adjoined flat_price_ratio,6
+Type S1_price_ratio,5
+Model A-Maisonette_price_ratio,4
+Terrace_price_ratio,3
+Improved-Maisonette,2
+Type S2,2
+Premium Apartment Loft_price_ratio,1
+Multi Generation,0
+MULTI-GENERATION,0

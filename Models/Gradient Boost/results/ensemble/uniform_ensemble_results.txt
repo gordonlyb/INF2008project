@@ -1,0 +1,102 @@
+Uniform Ensemble Model Results
+==================================================
+
+Test Set Metrics:
+RMSE: $53704.26
+R² Score: 0.9107
+MAE: $38145.32
+MAPE: 7.69%
+Median AE: $26923.69
+Maximum Error: $531873.35
+95% Prediction Interval: $224218.24
+
+Timing Metrics:
+Training Time: 15.4498 s
+Prediction Time: 0.0799 ms/sample
+
+Comparison with Individual Models:
+--------------------------------------------------
+RMSE: Ensemble = 53704.2625, Best Individual = 54702.2777 (Model 1), Improvement: +1.86%
+R2: Ensemble = 0.9107, Best Individual = 0.9073 (Model 1), Improvement: +0.37%
+MAE: Ensemble = 38145.3172, Best Individual = 38887.7620 (Model 2), Improvement: +1.95%
+MAPE: Ensemble = 7.6912, Best Individual = 7.8274 (Model 5), Improvement: +1.77%
+
+Individual Model Performance:
+--------------------------------------------------
+Model 1:
+RMSE: $54702.28
+R² Score: 0.9073
+MAE: $38901.03
+MAPE: 7.84%
+Prediction Time: 0.0141 ms/sample
+
+Model 2:
+RMSE: $54793.57
+R² Score: 0.9070
+MAE: $38887.76
+MAPE: 7.83%
+Prediction Time: 0.0192 ms/sample
+
+Model 3:
+RMSE: $54857.93
+R² Score: 0.9068
+MAE: $38926.72
+MAPE: 7.84%
+Prediction Time: 0.0152 ms/sample
+
+Model 4:
+RMSE: $54856.39
+R² Score: 0.9068
+MAE: $38970.13
+MAPE: 7.84%
+Prediction Time: 0.0159 ms/sample
+
+Model 5:
+RMSE: $54736.84
+R² Score: 0.9072
+MAE: $38891.71
+MAPE: 7.83%
+Prediction Time: 0.0157 ms/sample
+
+
+ADDITIONAL MODEL EVALUATION METRICS
+==================================================
+
+Uniform Ensemble Additional Metrics:
+Adjusted R²: 0.9105
+CV R² Mean: 0.9107 (±0.0026)
+CV RMSE Mean: $53698.34 (±$795.89)
+Prediction Time (CV): 0.0786 ms/sample
+
+Individual Models Additional Metrics:
+--------------------------------------------------
+Model 1:
+Adjusted R²: 0.9071
+CV R² Mean: 0.9073 (±0.0027)
+CV RMSE Mean: $54695.59 (±$853.75)
+Prediction Time (CV): 0.0149 ms/sample
+
+Model 2:
+Adjusted R²: 0.9068
+CV R² Mean: 0.9070 (±0.0028)
+CV RMSE Mean: $54786.91 (±$852.67)
+Prediction Time (CV): 0.0157 ms/sample
+
+Model 3:
+Adjusted R²: 0.9066
+CV R² Mean: 0.9068 (±0.0022)
+CV RMSE Mean: $54853.55 (±$692.40)
+Prediction Time (CV): 0.0162 ms/sample
+
+Model 4:
+Adjusted R²: 0.9066
+CV R² Mean: 0.9068 (±0.0027)
+CV RMSE Mean: $54850.04 (±$833.23)
+Prediction Time (CV): 0.0156 ms/sample
+
+Model 5:
+Adjusted R²: 0.9070
+CV R² Mean: 0.9072 (±0.0030)
+CV RMSE Mean: $54729.85 (±$872.90)
+Prediction Time (CV): 0.0150 ms/sample
+

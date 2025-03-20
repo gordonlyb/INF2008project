@@ -1,0 +1,101 @@
+Feature,Importance
+remaining_lease,26789
+floor_area_sqm,17870
+area_by_storey,15162
+lease_exp_factor,3263
+Model A_price_ratio,908
+Improved_price_ratio,797
+Premium Apartment,781
+4 ROOM,705
+SENGKANG_price_ratio,584
+JURONG WEST_price_ratio,485
+BUKIT MERAH_price_ratio,469
+YISHUN_price_ratio,451
+Maisonette_price_ratio,446
+PUNGGOL,443
+WOODLANDS_price_ratio,432
+TAMPINES,416
+BEDOK,391
+BUKIT PANJANG_price_ratio,384
+HOUGANG_price_ratio,382
+KALLANG/WHAMPOA,380
+BUKIT BATOK_price_ratio,375
+SEMBAWANG_price_ratio,372
+TOA PAYOH_price_ratio,370
+CHOA CHU KANG_price_ratio,369
+New Generation_price_ratio,367
+DBSS,365
+QUEENSTOWN_price_ratio,354
+5 ROOM,323
+CLEMENTI,314
+JURONG EAST,283
+SERANGOON_price_ratio,282
+GEYLANG_price_ratio,280
+PASIR RIS,271
+BISHAN_price_ratio,264
+3 ROOM,195
+CENTRAL AREA_price_ratio,193
+Standard,193
+EXECUTIVE_price_ratio,190
+Simplified,183
+2 ROOM,146
+long_lease,101
+Model A,98
+BUKIT TIMAH,93
+Model A2,93
+MARINE PARADE,84
+Adjoined flat,83
+Premium Apartment_price_ratio,78
+BEDOK_price_ratio,65
+Improved,63
+Maisonette,56
+TAMPINES_price_ratio,53
+New Generation,49
+BUKIT PANJANG,49
+BUKIT MERAH,47
+WOODLANDS,45
+SENGKANG,44
+4 ROOM_price_ratio,44
+Type S1,43
+DBSS_price_ratio,41
+SEMBAWANG,41
+Model A-Maisonette,41
+JURONG WEST,40
+JURONG EAST_price_ratio,39
+CHOA CHU KANG,39
+YISHUN,38
+QUEENSTOWN,37
+KALLANG/WHAMPOA_price_ratio,35
+3 ROOM_price_ratio,34
+CLEMENTI_price_ratio,34
+Premium Apartment Loft,34
+BUKIT BATOK,33
+PUNGGOL_price_ratio,33
+PASIR RIS_price_ratio,32
+Multi Generation_price_ratio,28
+HOUGANG,27
+GEYLANG,27
+Type S2_price_ratio,27
+EXECUTIVE,26
+BISHAN,25
+SERANGOON,24
+Terrace,23
+short_lease,23
+TOA PAYOH,23
+Simplified_price_ratio,22
+Standard_price_ratio,22
+CENTRAL AREA,19
+Adjoined flat_price_ratio,10
+MARINE PARADE_price_ratio,10
+2 ROOM_price_ratio,9
+BUKIT TIMAH_price_ratio,9
+Improved-Maisonette_price_ratio,8
+MULTI-GENERATION_price_ratio,7
+Premium Apartment Loft_price_ratio,6
+Type S2,6
+Terrace_price_ratio,5
+Type S1_price_ratio,3
+Model A-Maisonette_price_ratio,2
+Improved-Maisonette,2
+Multi Generation,1
+MULTI-GENERATION,0

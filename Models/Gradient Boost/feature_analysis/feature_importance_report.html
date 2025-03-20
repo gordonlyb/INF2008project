@@ -1,0 +1,368 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>HDB Price Prediction - Feature Importance Analysis</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+            h1 { color: #2c3e50; }
+            h2 { color: #3498db; margin-top: 30px; }
+            h3 { color: #2980b9; }
+            table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+            th, td { text-align: left; padding: 12px; }
+            th { background-color: #3498db; color: white; }
+            tr:nth-child(even) { background-color: #f2f2f2; }
+            img { max-width: 100%; height: auto; margin: 20px 0; }
+            .insight { background-color: #e8f4f8; padding: 15px; border-left: 5px solid #3498db; margin-bottom: 20px; }
+            .recommendation { background-color: #eafaf1; padding: 15px; border-left: 5px solid #2ecc71; margin-bottom: 20px; }
+        </style>
+    </head>
+    <body>
+        <h1>HDB Resale Price Prediction: Feature Importance Analysis</h1>
+        
+        <div class="insight">
+            <h3>Key Findings Summary</h3>
+            <p>The optimized XGBoost model achieved an R² of 0.91 on test data with a MAPE of 7.83%, 
+            indicating strong predictive performance. Feature importance analysis reveals that location factors,
+            flat types, and price ratio features are the strongest predictors of HDB resale prices.</p>
+        </div>
+        
+        <h2>1. Top Features by Importance</h2>
+        
+        <h3>XGBoost Built-in Importance</h3>
+        <p>The top 10 features based on XGBoost's built-in importance metric:</p>
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>Importance Score</th>
+            </tr>
+    
+            <tr>
+                <td>EXECUTIVE_price_ratio</td>
+                <td>0.075284</td>
+            </tr>
+        
+            <tr>
+                <td>BUKIT MERAH_price_ratio</td>
+                <td>0.045537</td>
+            </tr>
+        
+            <tr>
+                <td>Terrace</td>
+                <td>0.040079</td>
+            </tr>
+        
+            <tr>
+                <td>Terrace_price_ratio</td>
+                <td>0.035942</td>
+            </tr>
+        
+            <tr>
+                <td>Type S1</td>
+                <td>0.033139</td>
+            </tr>
+        
+            <tr>
+                <td>BISHAN_price_ratio</td>
+                <td>0.032341</td>
+            </tr>
+        
+            <tr>
+                <td>Type S2</td>
+                <td>0.030415</td>
+            </tr>
+        
+            <tr>
+                <td>3 ROOM</td>
+                <td>0.028977</td>
+            </tr>
+        
+            <tr>
+                <td>QUEENSTOWN</td>
+                <td>0.028105</td>
+            </tr>
+        
+            <tr>
+                <td>BUKIT TIMAH</td>
+                <td>0.026586</td>
+            </tr>
+        
+        </table>
+        
+        <img src="xgboost_importance.png" alt="XGBoost Feature Importance">
+        
+        <h3>Permutation Importance</h3>
+        <p>The top 10 features based on permutation importance (measuring drop in performance when feature values are shuffled):</p>
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>Importance Score</th>
+            </tr>
+    
+            <tr>
+                <td>floor_area_sqm</td>
+                <td>0.449648</td>
+            </tr>
+        
+            <tr>
+                <td>remaining_lease</td>
+                <td>0.217014</td>
+            </tr>
+        
+            <tr>
+                <td>area_by_storey</td>
+                <td>0.080760</td>
+            </tr>
+        
+            <tr>
+                <td>SENGKANG</td>
+                <td>0.034143</td>
+            </tr>
+        
+            <tr>
+                <td>lease_exp_factor</td>
+                <td>0.031254</td>
+            </tr>
+        
+            <tr>
+                <td>WOODLANDS</td>
+                <td>0.028204</td>
+            </tr>
+        
+            <tr>
+                <td>QUEENSTOWN</td>
+                <td>0.027983</td>
+            </tr>
+        
+            <tr>
+                <td>3 ROOM</td>
+                <td>0.025183</td>
+            </tr>
+        
+            <tr>
+                <td>CHOA CHU KANG</td>
+                <td>0.024019</td>
+            </tr>
+        
+            <tr>
+                <td>JURONG WEST</td>
+                <td>0.022062</td>
+            </tr>
+        
+        </table>
+        
+        <img src="permutation_importance.png" alt="Permutation Feature Importance">
+        
+        <div class="insight">
+            <h3>Insight: Different Importance Metrics</h3>
+            <p>Comparing built-in XGBoost importance with permutation importance shows 
+            some differences in 
+            top features. Permutation importance is generally more reliable as it directly measures the impact of each feature
+            on model performance, while built-in importance is based on how often features are used in the model.</p>
+        </div>
+        
+        <h2>2. Feature Groups Analysis</h2>
+        
+        <p>Features were grouped by category to understand which types of information most influence HDB pricing:</p>
+        
+        <table>
+            <tr>
+                <th>Category</th>
+                <th>Total Importance</th>
+                <th>Feature Count</th>
+                <th>Top Features</th>
+            </tr>
+    
+            <tr>
+                <td>Price Ratio</td>
+                <td>0.487728</td>
+                <td>51</td>
+                <td>EXECUTIVE_price_ratio, BUKIT MERAH_price_ratio, Terrace_price_ratio</td>
+            </tr>
+        
+            <tr>
+                <td>Location</td>
+                <td>0.447373</td>
+                <td>40</td>
+                <td>BUKIT MERAH_price_ratio, BISHAN_price_ratio, QUEENSTOWN</td>
+            </tr>
+        
+            <tr>
+                <td>Flat Type</td>
+                <td>0.264799</td>
+                <td>14</td>
+                <td>EXECUTIVE_price_ratio, Type S1, Type S2</td>
+            </tr>
+        
+            <tr>
+                <td>Other</td>
+                <td>0.113456</td>
+                <td>23</td>
+                <td>Terrace, CHOA CHU KANG, DBSS</td>
+            </tr>
+        
+            <tr>
+                <td>Size & Floor</td>
+                <td>0.054189</td>
+                <td>5</td>
+                <td>CENTRAL AREA_price_ratio, CENTRAL AREA, floor_area_sqm</td>
+            </tr>
+        
+            <tr>
+                <td>Lease</td>
+                <td>0.013057</td>
+                <td>4</td>
+                <td>long_lease, short_lease, remaining_lease</td>
+            </tr>
+        
+        </table>
+        
+        <img src="feature_groups.png" alt="Feature Group Importance">
+        
+        <div class="insight">
+            <h3>Insight: Feature Category Importance</h3>
+            <p>The Price Ratio category has the highest total importance, 
+            indicating that price ratio factors are the most influential in determining HDB resale prices.
+            However, when looking at average importance per feature, the Flat Type 
+            category features have the highest individual impact.</p>
+        </div>
+        
+        <h2>3. SHAP Analysis</h2>
+        
+        <p>SHAP (SHapley Additive exPlanations) values show how each feature contributes to predictions:</p>
+        
+        <img src="shap_summary.png" alt="SHAP Summary Plot">
+        <p>The SHAP summary plot shows both the magnitude and direction of each feature's impact. 
+        Features at the top have the largest impact on predictions. Red points indicate higher feature values, blue points indicate lower values.</p>
+        
+        <img src="shap_importance.png" alt="SHAP Feature Importance">
+        <p>The SHAP importance plot ranks features by their absolute impact on model output, regardless of direction.</p>
+        
+        <div class="insight">
+            <h3>Insight: SHAP Value Analysis</h3>
+            <p>SHAP analysis reveals that some features have a clear positive or negative relationship with price, 
+            while others have more complex, non-linear effects. For example, [specific insight about a key feature 
+            from the SHAP plots] shows interesting patterns in how it influences predictions.</p>
+        </div>
+        
+        <h2>4. Feature Reduction Experiment</h2>
+        
+        <p>We tested model performance with different numbers of features to find the optimal balance
+        between complexity and accuracy:</p>
+        
+        <table>
+            <tr>
+                <th>Feature Count</th>
+                <th>RMSE ($)</th>
+                <th>R²</th>
+                <th>MAPE (%)</th>
+                <th>Training Time (s)</th>
+            </tr>
+    
+            <tr>
+                <td>5.0</td>
+                <td>$166399.14</td>
+                <td>0.1425</td>
+                <td>28.21%</td>
+                <td>1.6784</td>
+            </tr>
+        
+            <tr>
+                <td>10.0</td>
+                <td>$139735.70</td>
+                <td>0.3953</td>
+                <td>22.35%</td>
+                <td>2.4965</td>
+            </tr>
+        
+            <tr>
+                <td>20.0</td>
+                <td>$127616.77</td>
+                <td>0.4956</td>
+                <td>20.21%</td>
+                <td>3.1563</td>
+            </tr>
+        
+            <tr>
+                <td>30.0</td>
+                <td>$123234.79</td>
+                <td>0.5297</td>
+                <td>19.62%</td>
+                <td>4.2583</td>
+            </tr>
+        
+            <tr>
+                <td>50.0</td>
+                <td>$98878.27</td>
+                <td>0.6972</td>
+                <td>15.80%</td>
+                <td>6.0292</td>
+            </tr>
+        
+            <tr>
+                <td>75.0</td>
+                <td>$78752.67</td>
+                <td>0.8079</td>
+                <td>12.44%</td>
+                <td>8.0744</td>
+            </tr>
+        
+            <tr>
+                <td>100.0</td>
+                <td>$54128.84</td>
+                <td>0.9093</td>
+                <td>7.70%</td>
+                <td>11.9309</td>
+            </tr>
+        
+            <tr>
+                <td>109.0</td>
+                <td>$54228.12</td>
+                <td>0.9089</td>
+                <td>7.72%</td>
+                <td>14.3200</td>
+            </tr>
+        
+        </table>
+        
+        <img src="feature_reduction_plot.png" alt="Feature Reduction Performance">
+        
+        <div class="insight">
+            <h3>Insight: Optimal Feature Set</h3>
+            <p>The model achieves its best performance with 100.0 features. 
+            Using fewer features leads to underfitting, while using all features doesn't significantly improve performance
+            and increases training time.</p>
+        </div>
+        
+        <h2>5. Conclusions and Recommendations</h2>
+        
+        <div class="recommendation">
+            <h3>Key Recommendations</h3>
+            <ul>
+                <li><strong>Optimal Feature Set:</strong> Use the top 100.0 features for the best balance of performance and efficiency.</li>
+                <li><strong>Most Important Features:</strong> Focus on EXECUTIVE_price_ratio, BUKIT MERAH_price_ratio, Terrace as they are the strongest predictors.</li>
+                <li><strong>Feature Groups:</strong> Price Ratio features collectively have the greatest impact on price predictions.</li>
+                <li><strong>Model Simplification:</strong> A reduced model with 100.0 features performs nearly as well as the full model while being more interpretable and faster to train.</li>
+            </ul>
+        </div>
+        
+        <h3>Business Implications</h3>
+        <p>These findings have several implications for HDB property valuation and decision-making:</p>
+        <ul>
+            <li>Location remains a critical factor in HDB pricing, with certain neighborhoods commanding significant premiums</li>
+            <li>Flat type and size characteristics have quantifiable impacts on resale value</li>
+            <li>Remaining lease duration shows clear influence on property values</li>
+            <li>The price ratio features demonstrate the importance of relative pricing in the market</li>
+        </ul>
+        
+        <h3>Next Steps</h3>
+        <ul>
+            <li>Implement the optimized feature set in the production model</li>
+            <li>Develop focused sub-models for specific property segments</li>
+            <li>Create interactive visualizations for stakeholders to explore feature relationships</li>
+            <li>Periodically refresh the analysis as new data becomes available</li>
+        </ul>
+        
+    </body>
+    </html>
+    
